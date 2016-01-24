@@ -649,8 +649,8 @@ public:
     Prompt(InputHandler& input_handler, StringView prompt,
            String initstr, Face face, Completer completer,
            PromptCallback callback)
-        : InputMode(input_handler), m_prompt(prompt.str()), m_prompt_face(face),
-          m_completer(completer), m_callback(callback),
+        : InputMode(input_handler), m_callback(callback),
+          m_completer(completer),m_prompt(prompt.str()), m_prompt_face(face),
           m_autoshowcompl{context().options()["autoshowcompl"].get<bool>()}
     {
         m_history_it = ms_history[m_prompt].end();
@@ -936,7 +936,7 @@ class NextKey : public InputMode
 {
 public:
     NextKey(InputHandler& input_handler, KeymapMode keymap_mode, KeyCallback callback)
-        : InputMode(input_handler), m_keymap_mode(keymap_mode), m_callback(std::move(callback)) {}
+        : InputMode(input_handler), m_callback(std::move(callback)), m_keymap_mode(keymap_mode) {}
 
     void on_key(Key key) override
     {

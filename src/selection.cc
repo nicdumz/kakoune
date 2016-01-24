@@ -16,7 +16,7 @@ void Selection::merge_with(const Selection& range)
 }
 
 SelectionList::SelectionList(Buffer& buffer, Selection s, size_t timestamp)
-    : m_buffer(&buffer), m_selections({ std::move(s) }), m_timestamp(timestamp)
+    : m_selections({ std::move(s) }), m_buffer(&buffer), m_timestamp(timestamp)
 {
     check_invariant();
 }
@@ -25,7 +25,7 @@ SelectionList::SelectionList(Buffer& buffer, Selection s)
     : SelectionList(buffer, std::move(s), buffer.timestamp()) {}
 
 SelectionList::SelectionList(Buffer& buffer, Vector<Selection> s, size_t timestamp)
-    : m_buffer(&buffer), m_selections(std::move(s)), m_timestamp(timestamp)
+    : m_selections(std::move(s)), m_buffer(&buffer), m_timestamp(timestamp)
 {
     kak_assert(size() > 0);
     m_main = size() - 1;

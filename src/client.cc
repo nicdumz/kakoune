@@ -24,9 +24,9 @@ Client::Client(std::unique_ptr<UserInterface>&& ui,
                EnvVarMap env_vars,
                String name)
     : m_ui{std::move(ui)}, m_window{std::move(window)},
+      m_env_vars(env_vars),
       m_input_handler{std::move(selections), Context::Flags::None,
-                      std::move(name)},
-      m_env_vars(env_vars)
+                      std::move(name)}
 {
     context().set_client(*this);
     context().set_window(*m_window);

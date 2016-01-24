@@ -16,9 +16,9 @@ using CandidateList = Vector<String>;
 
 struct Completions
 {
-    CandidateList candidates;
     ByteCount start;
     ByteCount end;
+    CandidateList candidates;
 
     Completions()
         : start(0), end(0) {}

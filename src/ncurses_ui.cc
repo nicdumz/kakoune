@@ -222,12 +222,7 @@ void on_term_resize(int)
 }
 
 NCursesUI::NCursesUI()
-    : m_stdin_watcher{0, [this](FDWatcher&, EventMode mode) {
-        if (m_input_callback)
-            m_input_callback(mode);
-      }},
-      m_assistant(assistant_clippy),
-      m_colors{
+    : m_colors{
         { Color::Default, -1 },
         { Color::Black,   COLOR_BLACK },
         { Color::Red,     COLOR_RED },
@@ -237,7 +232,12 @@ NCursesUI::NCursesUI()
         { Color::Magenta, COLOR_MAGENTA },
         { Color::Cyan,    COLOR_CYAN },
         { Color::White,   COLOR_WHITE },
-      }
+      },
+      m_stdin_watcher{0, [this](FDWatcher&, EventMode mode) {
+        if (m_input_callback)
+            m_input_callback(mode);
+      }},
+      m_assistant(assistant_clippy)
 {
     initscr();
     raw();

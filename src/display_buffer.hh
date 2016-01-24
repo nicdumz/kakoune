@@ -37,7 +37,7 @@ public:
      { check_invariant(); }
 
     DisplayAtom(String str, Face face = Face{})
-        : m_type(Text), m_text(std::move(str)), face(face)
+        : face(face), m_type(Text), m_text(std::move(str))
      { check_invariant(); }
 
     StringView content() const;
